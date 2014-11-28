@@ -1,0 +1,5 @@
+---
+- name: Get the helloworld thing online
+  git: repo={{ git_repo }
+  dest={{ app_destination }}
+

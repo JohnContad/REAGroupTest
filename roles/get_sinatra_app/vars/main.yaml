@@ -1,0 +1,3 @@
+---
+git_repo: git://github.com/tnh/simple-sinatra-app.git
+app_destination: /var/www/simple_sinatra_app

@@ -1,0 +1,36 @@
+---
+# - name: Update the stupid AMI with oldass repos
+#   sudo_user: root
+#   shell: 'sudo yum check-update || test $? -eq 100'
+
+ - name: Install ModPassenger Stuff
+   yum: name=gcc state=latest
+#    - gcc 
+#    - gcc-c++ 
+#    - libcurl-devel 
+#    - openssl-devel
+#    - zlib-devel
+#    - httpd-devel
+#    - ruby-devel
+#    - apr-devel
+#    - apr-util-devel
+
+ - name: Install Ruby Stuff
+   yum: name={{ item }} state=latest
+   with_items:
+     - rubygems
+     - ruby
+     - ruby-devel
+     - rubygem-rake
+
+ - name: Install Modpassenger
+   gem: name=passenger state=present
+
+ - name: Build Modpassengermodules
+   shell: 'passenger-install-apache2-module --auto'
+
+ - name: Put the LoadModule directives in
+   copy: src=zzz_modpassenger.conf dest=/etc/httpd/conf.d/zzz_modpassenger.conf owner=apache group=apache mode="u+rw,g=r,o=r"
+
+ - name: Restart Apache
+   service: name=httpd state=restarted

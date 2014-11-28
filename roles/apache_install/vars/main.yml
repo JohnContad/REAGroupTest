@@ -1,0 +1,3 @@
+---
+sudo: yes 
+remote_user: ec2-user

@@ -1,0 +1,15 @@
+---
+- name: Deploy EC2 instance
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  roles:
+    - ec2_deploy
+
+- name: Install Apache and ModPassenger
+  hosts: rea-group
+  gather_facts: True
+  roles:
+    - apache_install
+    - ruby_install 
+    - get_sinatra_app

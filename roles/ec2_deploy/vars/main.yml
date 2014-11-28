@@ -1,0 +1,7 @@
+---
+key_name: ihearrichmondisaniceplace
+instance_type: t2.micro
+group: rea-group
+region: ap-southeast-2
+image: ami-83e08db9
+instance_tags: "Name=ReaGroupTest"
